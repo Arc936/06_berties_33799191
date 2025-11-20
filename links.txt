@@ -1,5 +1,1 @@
-<<<<<<< HEAD
 home=http://www.doc.gold.ac.uk/usr/443
-=======
-home=http://www.doc.gold.ac.uk/usr/443/
->>>>>>> 81b8ff290816a7effd769d61c712dd0a6037638d
