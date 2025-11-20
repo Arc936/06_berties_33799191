@@ -3,12 +3,13 @@ var express = require ('express')
 var ejs = require('ejs')
 const path = require('path')
 var mysql = require('mysql2');
+require('dotenv').config();
 
 // Create the express application object
 const app = express()
 const port = 8000
 
-// Define the database connection pool
+ /*Define the database connection pool
 const db = mysql.createPool({
     host: 'localhost',
     user: 'berties_books_app',
@@ -18,7 +19,21 @@ const db = mysql.createPool({
     connectionLimit: 10,
     queueLimit: 0,
 });
+*/
+// Define the database connection pool
+const db = mysql.createConnection({
+    host: process.env.DB_HOST,         // Fetched from .env
+    user: process.env.DB_USER,         // Fetched from .env
+    password: process.env.DB_PASSWORD, // Fetched from .env
+    database: process.env.DB_NAME      // Fetched from .env
+});
+
+db.connect(function(err) {
+    if (err) throw err;
+    console.log("Database Connected!");
+});
 global.db = db;
+
 
 
 // Tell Express that we want to use EJS as the templating engine

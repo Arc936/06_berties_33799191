@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Audit History</title>
+</head>
+<body>
+
+    <h1>Login Audit History</h1>
+    <p>A log of all successful and failed user login attempts.</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Time of Attempt</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% attempts.forEach(function(attempt) { %>
+                <tr>
+                    <td><%= attempt.username %></td>
+                    <td><%= new Date(attempt.attemptTime).toLocaleString() %></td> 
+                    
+                    <% if (attempt.success) { %>
+                        <td class="success">SUCCESS</td>
+                    <% } else { %>
+                        <td class="failure">FAILURE</td>
+                    <% } %>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+
+</body>
+</html>
