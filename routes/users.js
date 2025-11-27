@@ -112,10 +112,9 @@ router.post('/registered',
     // 2. Main Route Handler
     function (req, res, next) {
         const errors = validationResult(req);
-                // --- B. Sanitize Inputs (Place the sanitization here) ---
-        // Sanitize 
+        
+        // --- B. Sanitize Inputs (Place the sanitization here) ---
         const sanitizedFirstName = req.sanitize(req.body.first); 
-
         const sanitizedLastName = req.sanitize(req.body.last);
 
         // --- A. Handle Validation Errors ---
@@ -136,10 +135,8 @@ router.post('/registered',
 
                 // 3. Store the user in the database.
                 const sqlquery = "INSERT INTO users (username, firstName, lastName, email, hashedPassword) VALUES (?, ?, ?, ?, ?)";
-                
-                // Use the SANITIZED values for database insertion
                 const userDetails = [
-                    req.body.username, // Assuming username is handled by check()
+                    req.body.username,
                     sanitizedFirstName, 
                     sanitizedLastName, 
                     req.body.email, 
@@ -152,10 +149,11 @@ router.post('/registered',
                         return next(dbError); 
                     }
                     
-                    // 4. Use the SANITIZED values for the success message (if sending one)
-                    const successMessage = 'Hello '+ sanitizedFirstName + ' '+ sanitizedLastName +' you are now registered!';
+                    // 4. Success Response: ONLY USE res.redirect()
+                    // The successMessage variable is no longer needed here since it was only used by res.send()
                     
-                    res.redirect('/users/login'); 
+                    // This is the ONLY line needed to finish the request successfully:
+                    return res.redirect('/users/login'); 
                 });
             });
         }
