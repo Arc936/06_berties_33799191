@@ -62,7 +62,7 @@ router.post('/loggedin', function (req, res, next) {
                 
                 // 4. Send the final response
                 if (successStatus) {
-                    res.send(`<h1>Login Successful!</h1><p>Welcome back, **${username}**.</p>`);
+                    res.send(`<h1>Login Successful!</h1><p>Welcome back, **${username}**.</p> <a href="/">Home</a>`);
                 } else {
                     res.send(`<h1>Login Failed</h1><p>Incorrect password for user **${username}**.</p>`);
                 }
@@ -155,7 +155,7 @@ router.post('/registered',
                     // 4. Use the SANITIZED values for the success message (if sending one)
                     const successMessage = 'Hello '+ sanitizedFirstName + ' '+ sanitizedLastName +' you are now registered!';
                     
-                    res.redirect('/login'); 
+                    res.redirect('/users/login'); 
                 });
             });
         }
