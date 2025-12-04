@@ -15,3 +15,10 @@ Remove white spoaces where it could mess up the sanitisation.
 
 Validation ensures the data conforms to a strict format, which is often more effective than generic sanitization for these specific data types.
 The password is not sanitized because it is immediately hashed using bcrypt before being stored. The original plain text is never stored or used in any context where sanitization would be relevant.
+
+API can search through books with examples of 
+Get All Books	http://localhost:8000/api/books
+Sort by Name	http://localhost:8000/api/books?sort=name
+Filter by Price Range	http://localhost:8000/api/books?minprice=12&max_price=20
+Search, Filter, and Sort	http://localhost:8000/api/books?search=history&minprice=10&sort=price
+and sort in order of price or aplehbretical order
